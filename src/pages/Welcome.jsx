@@ -1,37 +1,59 @@
-import React , { useEffect, userState} from "react";
-import {Header} from "../components/header";
-import {AppButton} from "../components/AppButton"
+import React, { useEffect, useState } from "react";
+import { Header } from "../components/header";
+import { AppButton } from "../components/AppButton";
 import { AppLable } from "../components/AppLable";
 
-  const Welcome = () => {
-  const [ userName , setUserName] = userState ("");
-  const [userPhone , setUserPhone] = userState("");
-  const [isDisabled, setIsDiabled] = userState(true)
-  useEffect(()=> {
+const Welcome = () => {
+  const [userName, setUserName] = useState("");
+  const [userPhone, setUserPhone] = useState("");
+  const [isDisabled, setIsDisabled] = useState(true);
+
+  useEffect(() => {
     if (userName && userPhone) {
-      setIsDiabled(false)
-    }else{   
-      setIsDiabled(true)
+      setIsDisabled(false);
+    } else {
+      setIsDisabled(true);
     }
-  } ,[userName,userPhone])
+  }, [userName, userPhone]);
+
   return (
     <div className="container">
       <div className="wrapper">
         <div className="welcome">
-          <Header headerType="h2" headerText = "hello"/>
-          <form className="welcom__form">
-           <AppLable  labelText= "Your name" labelPlaceHolder = "Name" errorText = "write correctly!" labelId="username" labelValue={userName} 
-            labelChange={()=> setUserName}/>
-           <AppLable labelPlaceHolder = "+998 (..) " errorText = "write correctly!" labelId="phone" labelText="your number" labelValue={userPhone}
-           labelChange={()=> setUserPhone} />
-           <AppButton btnText = "next" isDisabled={true} btnType="submit" />
-           </form>
-          </div>
+          <Header
+           headerType="h1"
+            headerText="Добро пожаловать в квиз от лучшего учебного центра"
+          />
+          <form className="welcome__form">
+            <AppLable
+              labelText={"Ваше имя"}
+              labelType={"text"}
+              labelId={"username"}
+              labelPlaceholder={"Ваш ответ"}
+              errorText={"Введите имя корректно"}
+              lableValue={userName}
+              lableChange={setUserName}
+            />
+            <AppLable
+              labelText={"Ваш номер"}
+              labelType={"tel"}
+              labelId={"phone"}
+              labelPlaceholder={"+998 9- --- -- -- "}
+              labelPattern={"^(?:+998)?(?:d{2})?(?:d{7})$"}
+              errorText={"Введите номер в правильном формате"}
+              lableValue={userPhone}
+              lableChange={setUserPhone}
+            />
+            <AppButton
+              btnText={"Далее"}
+              isDisabled={isDisabled}
+              btnType={"submit"}
+            />
+          </form>
+        </div>
       </div>
-    </div>       
-   
+    </div>
   );
 };
-
 
 export default Welcome;

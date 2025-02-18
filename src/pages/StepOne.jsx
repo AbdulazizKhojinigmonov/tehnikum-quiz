@@ -1,9 +1,22 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Header } from "../components/header";
-import { AppLable } from "../components/AppLable";
 import { AppButton } from "../components/AppButton";
+import { AppLable } from "../components/AppLable";
 
 const StepOne = () => {
+
+const[userAnswer, setUserAnswer] = useState("");
+const [isDisabled, setIsDisabled] = useState(true);
+
+useEffect(()=>{
+  if (userAnswer){
+    setIsDisabled(false);
+  }else{
+    setIsDisabled(true);
+  }
+}, [userAnswer]);
+
+
   return (
     <div className="container">
       <div className="wrapper">
@@ -23,9 +36,15 @@ const StepOne = () => {
             </div>
           </div>
           <div className="question">
-            <Header text = "Question"/>
-            <AppLable labelText = "hello" labelPlaceHolder = "your answer "errorText = "write telephone number" labelId ="answer"/>
-            <AppButton tnText = "next" isDisabled={true} btnType="submit"/>
+            <Header headerType="h2" headerText={"1. Занимательный вопрос"} />
+            <AppLable
+              labelId={"answer"}
+              labelPlaceholder={"Ваш ответ"}
+              errorText={" Введите номер в правильном формате например"}
+              lableValue={userAnswer}
+              lableChange={setUserAnswer}
+            />
+            <AppButton btnText={"Далее"} isDisabled={isDisabled} btnType={"button"} />
           </div>
         </div>
       </div>

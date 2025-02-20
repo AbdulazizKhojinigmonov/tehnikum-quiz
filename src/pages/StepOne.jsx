@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Header } from "../components/header";
 import { AppButton } from "../components/AppButton";
 import { AppLable } from "../components/AppLable";
+import { ProgressBar } from "../components/ProgressBar";
 
 const StepOne = () => {
 
@@ -28,12 +29,7 @@ useEffect(()=>{
               </span>
               <span className="indicator__value">15%</span>
             </div>
-            <div className="indicator__progressbar">
-              <div className="indicator__unit indicator__unit-1"></div>
-              <div className="indicator__unit indicator__unit-2"></div>
-              <div className="indicator__unit indicator__unit-3"></div>
-              <div className="indicator__unit indicator__unit-4"></div>
-            </div>
+            <ProgressBar currentStep = {1}/>
           </div>
           <div className="question">
             <Header headerType="h2" headerText={"1. Занимательный вопрос"} />

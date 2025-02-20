@@ -1,8 +1,8 @@
 import React from 'react'
 
-export const AppLable = ({labelText,labelPlaceHolder,errorText,labelId ,labelValue, labelChange}) => {
+export const AppLable = ({labelText,labelPlaceHolder,errorText,labelId ,labelValue, labelChange , isError}) => {
     return (
-        <label className="input-wrapper" htmlFor={labelId}>
+        <label className={`input-wrapper ${isError && "_error"}`} htmlFor={labelId}>
         {labelText}
         <input
           required
@@ -12,10 +12,9 @@ export const AppLable = ({labelText,labelPlaceHolder,errorText,labelId ,labelVal
           placeholder={labelPlaceHolder}
           value = {labelValue}
           onChange={(e)=>labelChange(e.target.value)}
+          
         />
-        <span id="error-message">
-          {errorText}
-        </span>
+      {isError && <span id="error-message">{errorText}</span>}
       </label>
     )
 }

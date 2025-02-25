@@ -32,7 +32,7 @@ useEffect(()=>{
             <ProgressBar currentStep = {1}/>
           </div>
           <div className="question">
-            <Header headerType="h2" headerText={"1. Занимательный вопрос"} />
+            <Header headerType="h2" headerText={" nimagGAP"} />
             <AppLable
               labelId={"answer"}
               labelPlaceholder={"Ваш ответ"}

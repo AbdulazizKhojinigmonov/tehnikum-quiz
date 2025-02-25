@@ -3,34 +3,36 @@ import { ProgressBar } from "../components/ProgressBar";
 import { AppButton } from "../components/AppButton";
 // import { AppLable } from "../components/AppLable";
 import { Header } from "../components/header";
+import { AnswerItem } from "../components/AnswerItem";
 
 const StepTwo = () => {
+const course = [
+ { id : "variant-1",
+  value : "React"
+ },
+ { id : "variant-2",
+  value : "Python"
+ },
+ { id : "variant-3",
+  value : "Data Analytic"
+ },
+ { id : "variant-4",
+  value : "UX/UI"
+ }
+
+]
+
   return (
     <div className="container">
       <div className="wrapper">
         <div className="variants-quiz">
-
            <ProgressBar currentStep = {1}/>
           <div className="question">
-          <Header headerType="h2" headerText={"1. Занимательный вопрос"} />
-            
+          <Header headerType="h2" headerText={"choose cource"} />
             <ul className="variants">
-              <li className="variant-wrapper">
-                <input required type="radio" name="variant-1" id="variant-1" />
-                <label htmlFor="variant-1">Ваш ответ</label>
-              </li>
-              <li className="variant-wrapper">
-                <input required type="radio" name="variant-2" id="variant-2" />
-                <label htmlFor="variant-2">Ваш ответ</label>
-              </li>
-              <li className="variant-wrapper">
-                <input required type="radio" name="variant-3" id="variant-3" />
-                <label htmlFor="variant-3">Ваш ответ</label>
-              </li>
-              <li className="variant-wrapper">
-                <input required type="radio" name="variant-4" id="variant-4" />
-                <label htmlFor="variant-4">Ваш ответ</label>
-              </li>
+              {course.map((elem,indx) =>(
+                 <AnswerItem AnswerItem={elem.value} answerValue={elem.value} id={elem.id} key={elem.id} />
+              ))}
             </ul>
             <AppButton btnText={"Далее"} isDisabled={true} btnType={"button"} />
           </div>

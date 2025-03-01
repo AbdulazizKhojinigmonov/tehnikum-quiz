@@ -6,7 +6,7 @@ export const AppLable = ({labelText,labelPlaceHolder,errorText,labelId ,labelVal
         {labelText}
         <input
           required
-          type="text"
+          type="text" 
           name={labelId}
           id={labelId}
           placeholder={labelPlaceHolder}

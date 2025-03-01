@@ -9,7 +9,7 @@ export const AnswerItem = ({AnswerText , id , answerValue , answerChange}) => {
             name="variant-1" 
             id= {id} 
             value = {answerValue} 
-            answerChange = {answerChange} />
+            onChange = {answerChange} />
         <label htmlFor={id}>{AnswerText}</label>
         </li> 
     );

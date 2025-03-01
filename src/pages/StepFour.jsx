@@ -1,51 +1,66 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { ProgressBar } from "../components/ProgressBar";
+import { AppButton } from "../components/AppButton";
+import { isDisabled } from "@testing-library/user-event/dist/utils";
+import { Header } from "../components/header";
+import { useNavigate } from "react-router-dom";
 
 const StepFour = () => {
+  const [points,setPoints] = useState("")
+  const navigate = useNavigate();
+  const [isDisabled, setIsDisabled] = useState (true)
+  const variant = [
+    {  id : "variant-1",
+      points : 1 ,
+    }, 
+    {
+      id : "variant-2",
+      points : 2 ,
+    }, 
+    {
+      id : "variant-3",
+      points : 3 ,
+    }, 
+    {
+      id : "variant-4",
+      points : 4 ,
+    },
+    {
+      id : "variant-5",
+      points : 5 ,
+    }
+  ];
+  useEffect (() => {
+    const userData = JSON.parse(localStorage.getItem("user")) || {};
+      localStorage.setItem("user",JSON.stringify({ ...userData, points }));
+      // if (points) {
+      //   setIsDisabled(false)
+      // }else{
+      //   setIsDisabled(true)
+      // }
+  }, [points] );
   return (
     <div className="container">
       <div className="wrapper">
         <div className="emoji-quiz">
-          <div className="indicator">
-            <div className="indicator__text">
-              <span className="indicator__description">
-                Скидка за прохождение опроса:
-              </span>
-              <span className="indicator__value">15%</span>
-            </div>
-            <div className="indicator__progressbar">
-              <div className="indicator__unit indicator__unit-1 _active"></div>
-              <div className="indicator__unit indicator__unit-2 _active"></div>
-              <div className="indicator__unit indicator__unit-3 _active"></div>
-              <div className="indicator__unit indicator__unit-4"></div>
-            </div>
-          </div>
+          <ProgressBar currentStep={4}/>
           <div className="question">
-            <h2>4. Занимательный вопрос</h2>
-            <ul className="level-variants">
-              <li className="variant-wrapper">
-                <input required type="radio" name="variant" id="variant-1" />
-                <label htmlFor="variant-1">1</label>
+            <Header headerType="h2" headerText="Rate our school"/>
+            <ul className="level-wrapper">
+            {variant.map ((elem) =>(
+              <li className="variant-wrapper" key={elem.id}>
+                  <input 
+                  value = {elem.points}
+                  required 
+                  type="radio" 
+                  name="variant" 
+                  id={elem.id} 
+                  onClick={(e) => {setPoints(e.target.value)}} />
+                  <label htmlFor={elem.id}>{elem.points}</label>
               </li>
-              <li className="variant-wrapper">
-                <input required type="radio" name="variant" id="variant-2" />
-                <label htmlFor="variant-2">2</label>
-              </li>
-              <li className="variant-wrapper">
-                <input required type="radio" name="variant" id="variant-3" />
-                <label htmlFor="variant-3">3</label>
-              </li>
-              <li className="variant-wrapper">
-                <input required type="radio" name="variant" id="variant-4" />
-                <label htmlFor="variant-4">4</label>
-              </li>
-              <li className="variant-wrapper">
-                <input required type="radio" name="variant" id="variant-5" />
-                <label htmlFor="variant-5">5</label>
-              </li>
+            ))}
             </ul>
-            <button type="button" id="next-btn" disabled>
-              Далее
-            </button>
+           <AppButton btnText="Далее"  isDisabled={points ? false : true} btnClick={()=> navigate("/thanks")}/>
           </div>
         </div>
       </div>

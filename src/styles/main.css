@@ -348,3 +348,12 @@ button:enabled:active {
   text-align: center;
   margin-bottom: 16px;
 }/*# sourceMappingURL=main.css.map */
+.thanks .info{
+  display: flex;
+  justify-content: space-between;
+}
+.thanks .info span {
+  font-size: 20px;
+  font-weight: 500;
+  margin-bottom: 10px;
+}

@@ -80,7 +80,7 @@ const Welcome = () => {
               isError={errorPhone}
             />
             <AppButton
-              BtnText="Далее"
+              BtnText="Next"
               isDisabled={isDisabled}
               btnType="button"
               btnClick={() => handleClick()}
